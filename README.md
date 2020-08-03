@@ -9,6 +9,7 @@ Work out Tracker allows a user to create and store new exersices along with spec
 
 ## link to app 
 
+https://rocky-tor-32133.herokuapp.com/
 
 ## Preview of the App 
  
