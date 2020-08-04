@@ -19,7 +19,7 @@ const WorkoutSchema = new Schema({
 });
 
 WorkoutSchema.virtual('totalDuration').get(function () {
-    return this.exercises.map(exe => exe.duration).reduce((prev, next) => prev + next);
+    return this.exercises.map(exe => exe.duration).reduce((prev, next) => prev + next, 0);
 })
 const Workout = mongoose.model("Workout", WorkoutSchema);
 

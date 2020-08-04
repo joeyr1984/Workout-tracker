@@ -16,16 +16,17 @@ router.get("/api/workouts", (req, res) => {
         });
 });
 router.post("/api/workouts", ({ body }, res) => {
-    Workout.create(body)
+    Workout.create({body})
         .then(dbWorkout => {
-            //console.log(dbWorkout);
+            console.log(dbWorkout);
             res.json(dbWorkout);
         })
         .catch(err => {
+            console.log(err)
             res.json(err);
         });
 });
-router.put("/api/workouts/:id", ({ body, params }, res) => {
+router.put("/api/workouts/:id", ({ body, params}, res) => {
     Exercise.create(body)
         .then(({ _id }) => Workout.findOneAndUpdate({_id: params.id}, { $push: { exercises: _id } }, { new: true }))
         .then(dbWorkout => {
@@ -33,7 +34,8 @@ router.put("/api/workouts/:id", ({ body, params }, res) => {
         })
         .catch(err => {
             res.json(err);
-        });
+        })
+        .catch(err => res.json({err}));
 });
 router.get("/exercise", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/exercise.html"));
